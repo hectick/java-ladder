@@ -1,5 +1,6 @@
 package ladder.model;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -59,6 +60,16 @@ class PlayersTest {
         List<Player> input = playerNames.stream().map(Player::new).collect(Collectors.toList());
         Players players = new Players(input);
         assertThatThrownBy(() -> players.findPlayer(new Player("z")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("중복된 이름이 존재하는 경우 예외 처리 테스트")
+    void duplicateNameTest() {
+        List<String> playerNames = new ArrayList<>(List.of("이오,이리내,깃짱,성하,이오".split(",")));
+        List<Player> input = playerNames.stream().map(Player::new).collect(Collectors.toList());
+
+        Assertions.assertThatThrownBy(() -> new Players(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
