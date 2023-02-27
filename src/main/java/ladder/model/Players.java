@@ -36,12 +36,10 @@ public class Players {
     }
 
     public Player findPlayer(Player givenPlayer) {
-        Optional<Player> foundPlayer = Optional.ofNullable(players.stream()
+        return players.stream()
                 .filter(player1 -> player1.equals(givenPlayer))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_PLAYER_NAME.getMessage())));
-
-        return foundPlayer.get();
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.EXCEPTION_INVALID_PLAYER_NAME.getMessage()));
     }
 
     public int findPositionOf(Player player) {

@@ -121,7 +121,7 @@ public class LadderGameController {
     private void showResultBoard(ResultBoard resultBoard) {
         String option = inputView.readPlayerChoice();
 
-        while (!option.equals(Command.LOOK_ALL_PLAYERS_RESULT.getCommand())) {
+        while (!Command.LOOK_ALL_PLAYERS_RESULT.getCommand().equals(option)) {
             showSinglePlayer(resultBoard, option);
             option = inputView.readPlayerChoice();
         }
